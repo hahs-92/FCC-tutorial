@@ -4,44 +4,52 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private int power;
-    private int health;
-    private string name;
+    // permite que las variables sean visibles en el unity
+    [SerializeField]
+    private float moveForce = 10f;
 
-    public Player(int health, int power, string name)
+    [SerializeField]
+    private float jumpForce = 11f;
+
+    private float movementX = 0;
+
+    // necesitamos la referencia del rigidBody
+    // una manera es arrastrar en el untity la ref
+    [SerializeField]
+    private Rigidbody2D myBody;
+
+    private Animator anim;
+    private SpriteRenderer sr;
+
+    private readonly string WALK_ANIMATION = "Walk";
+
+
+    private void Awake()
     {
-        this.Health = health;
-        this.Power = power;
-        this.Name = name;
+        // esta es otra manera de obtener la ref
+        myBody = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
-    public int Health
+    private void Start()
     {
-        get { return health;}
-        set { health= value; }
+            
     }
 
-    public string Name
+    private void Update()
     {
-        get { return name; }
-        set { name= value; }
+        PlayerMoveKeyBoard();
     }
 
-    public int Power
+    private void PlayerMoveKeyBoard()
     {
-        get { return power;  }
-        set { power = value; }
+        // !GetAxis devuelve valores entre -1... 0 ... 1
+        // GetAxisRaw devuleve valores entre -1 0 1
+        movementX = Input.GetAxisRaw("Horizontal");
+
+        transform.position += new Vector3(movementX, 0f, 0f) * Time.deltaTime * moveForce;
+        
     }
 
-    public void Info()
-    {
-        Debug.Log("Name: " + this.name);
-        Debug.Log("Power: " + this.power);
-        Debug.Log("Health: " + this.health);
-    }
-
-    public virtual void Attack()
-    {
-        Debug.Log("Player  is  Attacking...");
-    }
 }

@@ -5,9 +5,6 @@ using UnityEngine;
 public class LeaningPrograming : MonoBehaviour
 {
 
-    Player player = new Player(100, 69, "Hollow");
-    Warrior warrior = new Warrior(60, 45, "Jinx");
-
     // Getting components
     private Transform myTransform;
     private Rigidbody2D myBody;
@@ -35,12 +32,6 @@ public class LeaningPrograming : MonoBehaviour
 
         // para utilizar la coroutina se utiliza StartCoroutina
         // StartCoroutine(ExecuteSomething(2f));
-
-        player.Info();
-        warrior.Info();
-
-        player.Attack();
-        warrior.Attack();
 
         myTransform= transform;
         transform.position = new Vector3(10, 10, 0);
