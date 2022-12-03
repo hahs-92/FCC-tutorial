@@ -22,6 +22,8 @@ public class Player : MonoBehaviour
     private SpriteRenderer sr;
 
     private readonly string WALK_ANIMATION = "isWalk";
+    private readonly string GROUNG_TAG = "Ground";
+    private bool isGrounded = true;
 
 
     private void Awake()
@@ -41,6 +43,21 @@ public class Player : MonoBehaviour
     {
         PlayerMoveKeyBoard();
         AnimatePlayer();
+        PlayerJump();
+    }
+
+    private void FixedUpdate()
+    {
+        //PlayerJump();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // el tag se agrego a cada asset de ground
+        if(collision.gameObject.CompareTag(GROUNG_TAG))
+        {
+            isGrounded = true;
+        }
     }
 
     private void PlayerMoveKeyBoard()
@@ -68,6 +85,16 @@ public class Player : MonoBehaviour
         } else
         {
             anim.SetBool(WALK_ANIMATION, false);
+        }
+    }
+
+    void PlayerJump()
+    {
+        // se presiona el espaciador
+        if(Input.GetButtonDown("Jump") && isGrounded)
+        {
+            isGrounded= false;
+            myBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
         }
     }
 
