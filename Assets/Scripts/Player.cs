@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
 
     // necesitamos la referencia del rigidBody
     // una manera es arrastrar en el untity la ref
-    [SerializeField]
+    //[SerializeField]
     private Rigidbody2D myBody;
 
     private Animator anim;
@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //PlayerJump();
+       
     }
 
     private void Update()
@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // el tag se agrego a cada asset de ground
-        if(collision.gameObject.CompareTag(GROUNG_TAG))
+        if (collision.gameObject.CompareTag(GROUNG_TAG))
         {
             isGrounded = true;
         }
