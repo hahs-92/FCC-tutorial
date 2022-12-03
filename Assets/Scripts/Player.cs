@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     private Animator anim;
     private SpriteRenderer sr;
 
-    private readonly string WALK_ANIMATION = "Walk";
+    private readonly string WALK_ANIMATION = "isWalk";
 
 
     private void Awake()
@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         PlayerMoveKeyBoard();
+        AnimatePlayer();
     }
 
     private void PlayerMoveKeyBoard()
@@ -50,6 +51,24 @@ public class Player : MonoBehaviour
 
         transform.position += new Vector3(movementX, 0f, 0f) * Time.deltaTime * moveForce;
         
+    }
+
+    void AnimatePlayer()
+    {
+       if(movementX > 0f)
+        {
+            // we are going to the right side
+            anim.SetBool(WALK_ANIMATION, true);
+            sr.flipX = false;
+        } else if(movementX < 0f)
+        {
+            // we are going to the letf side
+            anim.SetBool(WALK_ANIMATION, true);
+            sr.flipX = true;
+        } else
+        {
+            anim.SetBool(WALK_ANIMATION, false);
+        }
     }
 
 }
