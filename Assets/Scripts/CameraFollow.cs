@@ -24,6 +24,13 @@ public class CameraFollow : MonoBehaviour
 
     void LateUpdate()
     {
+        // si el player fue destruido
+        // es igual a player == null
+        if(!player)
+        {
+            return;
+        }
+
         temPos = transform.position;
         temPos.x = player.position.x;
 

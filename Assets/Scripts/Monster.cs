@@ -9,6 +9,8 @@ public class Monster : MonoBehaviour
 
     private Rigidbody2D myBody;
 
+    // los enemigos no se chocan entre si, porque tienen la misma layer y
+    // en project Settings / physic2d se configuro que no se toquen
 
     private void Awake()
     {

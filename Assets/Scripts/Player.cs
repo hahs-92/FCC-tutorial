@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
 
     private readonly string WALK_ANIMATION = "isWalk";
     private readonly string GROUNG_TAG = "Ground";
+    private readonly string ENEMY_TAG = "Enemy";
     private bool isGrounded = true;
 
 
@@ -57,6 +58,23 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag(GROUNG_TAG))
         {
             isGrounded = true;
+        }
+
+        if(collision.gameObject.CompareTag(ENEMY_TAG))
+        {
+            // se destruye el player
+            Destroy(gameObject);
+        }
+    }
+
+    // otro metodo para detectar colissiones
+    // cuando el enemy esta con el isTrigger
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // enemy => ghost
+        if (collision.CompareTag(ENEMY_TAG))
+        {
+            Destroy(gameObject);
         }
     }
 
