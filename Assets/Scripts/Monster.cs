@@ -5,7 +5,7 @@ using UnityEngine;
 public class Monster : MonoBehaviour
 {
     [HideInInspector]
-    public float speed;
+    public float speed; // esta velocidad se setea en MonsterSpawner
 
     private Rigidbody2D myBody;
 
@@ -13,7 +13,7 @@ public class Monster : MonoBehaviour
     private void Awake()
     {
         myBody = GetComponent<Rigidbody2D>();
-        speed = 7f;
+        //speed = 7f;
     }
 
     // Start is called before the first frame update
