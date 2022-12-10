@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
+        // nos suscribimos a este evento
         SceneManager.sceneLoaded += OnLevelFinishedLoading;
     }
 
@@ -45,6 +46,11 @@ public class GameManager : MonoBehaviour
 
     void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
     {
-        
+        Debug.Log("Index: " + CharIndex);
+
+        if(scene.name == "Gameplay")
+        {
+            Instantiate(characters[CharIndex]);
+        }
     }
 }
