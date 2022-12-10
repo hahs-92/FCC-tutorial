@@ -14,6 +14,7 @@ public class CameraFollow : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
+        Debug.Log("the selected character is: " + GameManager.instance.CharIndex);
     }
 
     // Update is called once per frame

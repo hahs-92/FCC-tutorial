@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
@@ -10,21 +11,17 @@ public class MainMenuController : MonoBehaviour
     // el obejto MainMenuController, quien tiene este script
     public void PlayGame()
     {
-        // pasamos a otra escena
-       // para agregar una scene vamos a buildSettings
-        SceneManager.LoadScene("GamePlay");
-    }
+        //string clickedObject =  EventSystem.current.currentSelectedGameObject.name;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-       
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        // de esta manera solo importamos la clase que necesitamos 
+        // obtenemos el nombre del objeco que oprime el boton
+        // para el character 1 => 0, 2 => 1
+        int selectedCharacter = int.Parse(UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name);
         
+        GameManager.instance.CharIndex= selectedCharacter;
+
+        // pasamos a otra escena
+        // para agregar una scene vamos a buildSettings
+        SceneManager.LoadScene("GamePlay");
     }
 }
